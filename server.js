@@ -12,7 +12,7 @@ async function startServer() {
       console.log(err);
       return;
     }
-    console.log(`Server listening on port ${config.port}`);
+    console.log(`Server listening on port http://localhost:${config.port}`);
   });
 }
 

@@ -8,10 +8,10 @@ exports.createUser = async (req, res, next) => {
     next(e);
   }
 };
-exports.getUserList = async () => {
+exports.getUserList = async (req, res, next) => {
   try {
     const user = await User.find()
-   return res.status(200).json(user)
+    return res.status(200).json(user)
   } catch (error) {
   }
 }
