@@ -7,6 +7,7 @@ async function startServer() {
 
   await loaders.init({ expressApp: app });
 
+  
   app.listen(config.port, err => {
     if (err) {
       console.log(err);
