@@ -1,8 +1,13 @@
-const { decrypt, encrypt } = require("../../../utils/argonED");
-const config = require('../../config');
-const jwt = require('jsonwebtoken')
-const User = require("../../models/User");
-exports.login = async (req, res) => {
+// const { decrypt, encrypt } = require("../../../utils/argonED");
+// const config = require('../../config');
+// const jwt = require('jsonwebtoken')
+// const User = require("../../models/User");
+import { decrypt, encrypt } from "../../../utils/argonED.js";
+import config from '../../config/index.js';
+import jwt from 'jsonwebtoken';
+import User from "../../models/User.js";
+
+const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const findUser = await User.findOne({ email });
@@ -15,14 +20,14 @@ exports.login = async (req, res) => {
 
 
 
-        console.log("🚀 -> 🌏 ~ file: authController.js:15 ~ exports.login= ~ token:", token);
+        console.log("🚀 -> 🌏 ~ file: authController.js:15 ~ const login= ~ token:", token);
         res.status(200).json({ message: "Login successful", token, user: findUser });
     } catch (error) {
         console.error("Error occurred during login:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 };
-exports.register = async (req, res) => {
+const register = async (req, res) => {
     const { email,name, password } = req.body;
     try {
         const existingUser = await User.findOne({ email });
@@ -41,3 +46,5 @@ exports.register = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 };
+
+export {register,login}

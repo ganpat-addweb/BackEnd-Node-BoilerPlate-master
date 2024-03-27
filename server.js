@@ -1,13 +1,12 @@
-const express = require('express');
-const config = require('./src/config/index');
-const loaders = require('./src/loaders');
+import express from 'express';
+import config from './src/config/index.js';
+import {init} from './src/loaders/index.js';
 
 async function startServer() {
-  const app = express();
+  const app = express(); 
 
-  await loaders.init({ expressApp: app });
-
-  
+  await init({ expressApp: app });
+ 
   app.listen(config.port, err => {
     if (err) {
       console.log(err);
